@@ -8,11 +8,12 @@
   <title>Project 2</title>
 </head>
 <body>
-  <h1>
-    CUK Project
-  </h1>
-  <div>
-  </div>
+  <div id="game"></div>
+  <script type="text/javascript" src="https://rawgithub.com/craftyjs/Crafty/release/dist/crafty-min.js"></script>
+  <script>
+    Crafty.init(500,350, document.getElementById('game'));
+  </script>
+
   <script type="text/javascript" src="js/jquery.js"></script>
   <script type="text/javascript" src="js/main.js"></script>
   <script type="text/javascript" src="js/underscore.js"></script>
