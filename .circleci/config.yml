@@ -1,19 +1,17 @@
-version: 2
+version: 2.1
+orbs:
+  node: circleci/node@1.1.6
 jobs:
-  build:
-    docker:
-      - image: circleci/python:2.7-jessie
+  build-and-test:
+    executor:
+      name: node/default
     steps:
       - checkout
-      - run:
-          name: Install awscli
-          command: sudo pip install awscli
-      - run:
-          name: Deploy to S3 bucket
-          command: aws s3 sync . s3://cuk-global --exclude '.circleci/*'
-            --exclude '.git/*'
+      - node/with-cache:
+          steps:
+            - run: npm install
+            - run: npm test
 workflows:
-  version: 2
-  workflow:
-    jobs:
-      - build
+    build-and-test:
+      jobs:
+        - build-and-test
